@@ -11,12 +11,12 @@ Custom data pull from U.S. Securities and Exchange Commission (SEC) for anonymou
 ## Windows Installation
 1. Download the following: 
     - [Cygwin](https://www.cygwin.com)
-2. Using Cygwin, clone this git repository with the command below.
+2. Using Cygwin, clone this git repository with the command below:
     - `git clone https://github.com/marwin-ko/mfc-sec-etl.git`
 
 
 ## OSX or Linux Installation
-1. In the terminal, run the following command to clone this repository: 
+1. In the terminal, clone this git repository with the command below:
  - `git clone https://github.com/marwin-ko/mfc-sec-etl.git`
 
 
