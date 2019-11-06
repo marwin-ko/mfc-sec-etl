@@ -5,7 +5,7 @@ Custom data pull from U.S. Securities and Exchange Commission (SEC) for anonymou
 ## Requirements
 - [GitHub](https://git-scm.com/downloads)
 - [Python 3](https://www.anaconda.com/distribution/)
-    - The link for anaconda, but feel free to download Python 3 however you want.
+    - The link is for anaconda, but feel free to download Python 3 however you want.
 
 
 ## Windows Installation
