@@ -1,4 +1,4 @@
-# U.S. Securities and Exchange Commission Extract Transform Load
+# U.S. Securities & Exchange Commission Extract Transform Load
 Custom data pull from U.S. Securities and Exchange Commission (SEC) for anonymous investment company.
 
 
