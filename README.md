@@ -26,12 +26,12 @@ Custom data pull from U.S. Securities and Exchange Commission (SEC) for anonymou
     - File must be single column at first column position.
     - Column header can be title anything.
 2. Change directory to `./mfc_sec_etl` (top level of this repo).
-3. Run code using the following command: `python3 ./mfc_sec_etl/runner.py -f test_tickers.csv`
+3. Run code using the following command: `python3 ./mfc_sec_etl/runner.py -f <file_name.csv>`
     - Run test file: `python3 ./mfc_sec_etl/runner.py -f test_tickers.csv`
     - Run single ticker test: `python3 ./mfc_sec_etl/runner.py -t`
 4. The ticker information is stored as a csv file in `./mfc_sec_etl/results/`
-    - File will be saved as input file name with date appended to it: `<file name>__yyyy_mm_dd.csv`
-        - Example: `test_tickers__2019_10_31.csv`.
+    - File will be saved as input file name with date appended to it: `<file_name>__yyyy_mm_dd.csv`
+        - Example: `test_tickers__2019_11_05.csv`.
     - If ETL is run twice on the same ticker on the same day, a new file with `_copy` append will be created to preserve the first file.
-        - Example: `test_tickers__2019_10_31_copy.csv`.
-    - If ETL is run 3+ times on the same day, then the copy file (e.g. `test_tickers__2019_10_31_copy.csv`) will be written over. 
+        - Example: `test_tickers__2019_11_05_copy.csv`.
+    - If ETL is run 3+ times on the same day, then the copy file (e.g. `test_tickers__2019_11_05_copy.csv`) will be written over. 
