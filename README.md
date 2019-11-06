@@ -31,7 +31,7 @@ Custom data pull from U.S. Securities and Exchange Commission (SEC) for anonymou
     - Run single ticker test: `python3 ./mfc_sec_etl/runner.py -t`
 4. The ticker information is stored as a csv file in `./mfc_sec_etl/results/`
     - File will be saved as input file name with date appended to it: `<file_name>__yyyy_mm_dd.csv`
-        - Example: `test_tickers__2019_10_31.csv`.
+        - Example: `test_tickers__2019_11_05.csv`.
     - If ETL is run twice on the same ticker on the same day, a new file with `_copy` append will be created to preserve the first file.
-        - Example: `test_tickers__2019_10_31_copy.csv`.
-    - If ETL is run 3+ times on the same day, then the copy file (e.g. `test_tickers__2019_10_31_copy.csv`) will be written over. 
+        - Example: `test_tickers__2019_11_05_copy.csv`.
+    - If ETL is run 3+ times on the same day, then the copy file (e.g. `test_tickers__2019_11_05_copy.csv`) will be written over. 
