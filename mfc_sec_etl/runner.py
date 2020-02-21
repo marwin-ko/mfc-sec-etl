@@ -1,4 +1,5 @@
-import argparse
+#!/usr/bin/env python
+from glob import glob
 import numpy as np
 import os
 import pandas as pd
@@ -12,28 +13,18 @@ import time
 from utils import is_current_dir_correct, make_cashflow_colnames, update_dict_with_cashflow_vals, get_save_path
 
 
-parser = argparse.ArgumentParser(description='SEC runner script.')
-parser.add_argument('-f', action='store', dest='fname', type=str, default=str)
-parser.add_argument('-t', action='store_true', dest='test', default=False)
-args = parser.parse_args()
-
-
-fname = f'./sourcedata/{args.fname}'
+sd_path = os.path.dirname(os.path.realpath(__file__))[:-len('mfc_sec_etl')] + 'sourcedata/*'
+fname = sorted(glob(sd_path))[0]
 
 
 if not os.path.exists(fname):
     assert False, 'ERROR: This file path does not exist.'
 
-
 if not is_current_dir_correct():
     assert False, 'ERROR: You are in the wrong directory. You should be in */mfc-sec-etl/*'
 
 
-# Run Test
-if args.test:
-    tickers = ['GNC']
-else:
-    tickers = load_tickers(fname)
+tickers = load_tickers(fname)
 
 
 investing_colnames = make_cashflow_colnames('investing')
