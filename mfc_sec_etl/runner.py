@@ -13,7 +13,7 @@ import time
 from utils import is_current_dir_correct, make_cashflow_colnames, update_dict_with_cashflow_vals, get_save_path
 
 
-sd_path = os.path.dirname(os.path.realpath(__file__))[:-len('mfc_sec_etl')] + 'sourcedata/*'
+sd_path = os.path.dirname(os.path.realpath(__file__))[:-len('mfc_sec_etl\\dist\\')] + '\\sourcedata\\*'
 fname = sorted(glob(sd_path))[0]
 
 
