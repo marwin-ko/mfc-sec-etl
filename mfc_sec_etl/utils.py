@@ -3,8 +3,9 @@ from glob import glob
 import os
 
 
-def is_current_dir_correct():
-    curr_sub_dirs = list(map(lambda s: s.split('/')[-1], glob(os.getcwd() + '/*')))
+def is_current_dir_correct(osx=False):
+    sep = '/' if osx else '\\'
+    curr_sub_dirs = list(map(lambda s: s.split(f'{sep}')[-1], glob(os.getcwd() + f'{sep}*')))
     return all(sub_dir in curr_sub_dirs for sub_dir in ('sourcedata', 'mfc_sec_etl', 'results'))
 
 
@@ -19,9 +20,26 @@ def make_cashflow_colnames(s):
     return [label if i == 0 else label+'-{}'.format(i) for i in range(5)]
 
 
-def get_save_path(fname):
-    sname = fname.split('/')[-1].split('.')[0] + '__' + datetime.now().strftime('%Y_%m_%d') + '.csv'
-    spath = os.getcwd() + '/results/' + sname
+def get_fname_from_sourcedata(osx=False):
+    nl = '\n'
+    sep = '/' if osx else '\\'
+    print(os.getcwd())
+    dir = f'{sep}'.join(os.getcwd().split(f'{sep}')[:-1])
+    fnames = sorted(glob(f'{dir}{sep}sourcedata{sep}*'))
+    prompt = f'Enter desired file number: {nl}'
+    assert len(fnames) != 0, f'{nl}WARNING: No files in sourcedata folder!!!!!!!!!!!{nl}'
+    for i, fname in enumerate(fnames, 1):
+        prompt += f'[{i}] ' + f'{sep}'.join(fname.split(f'{sep}')[-2:]) + f'{nl}'
+    idx = int(input(prompt))
+    return fnames[idx-1]
+
+
+def get_save_path(fname, osx=False):
+    sep = '/' if osx else '\\'
+    sname = fname.split(f'{sep}')[-1].split('.')[0] + '__' + datetime.now().strftime('%Y_%m_%d') + '.csv'
+    dir = f'{sep}'.join(os.getcwd().split(f'{sep}')[:-1])
+    spath = dir + f'{sep}results{sep}' + sname
+
     if os.path.exists(spath):
         if '_copy' in spath:
             print('WARNING ' * 10)

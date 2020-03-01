@@ -1,7 +1,4 @@
-#!/usr/bin/env python
-from glob import glob
 import numpy as np
-import os
 import pandas as pd
 from random import random
 from sec_etl import *
@@ -10,23 +7,18 @@ from reports.cash_flow.investing_activity import wrapper_get_ia_values_and_label
 from reports.cash_flow.operating_activity import wrapper_get_oa_values_and_label
 from reports.document_entity_information.total_outstanding_shares import get_total_outstanding_shares
 import time
-from utils import is_current_dir_correct, make_cashflow_colnames, update_dict_with_cashflow_vals, get_save_path
+from utils import make_cashflow_colnames, update_dict_with_cashflow_vals, get_save_path, get_fname_from_sourcedata
 
 
-sd_path = os.path.dirname(os.path.realpath(__file__))[:-len('mfc_sec_etl\\dist\\')] + '\\sourcedata\\*'
-fname = sorted(glob(sd_path))[0]
+# For windows
+OSX = False
 
 
-if not os.path.exists(fname):
-    assert False, 'ERROR: This file path does not exist.'
-
-if not is_current_dir_correct():
-    assert False, 'ERROR: You are in the wrong directory. You should be in */mfc-sec-etl/*'
-
-
+# User selected file to process
+fname = get_fname_from_sourcedata(osx=False)
 tickers = load_tickers(fname)
 
-
+# Create column headers
 investing_colnames = make_cashflow_colnames('investing')
 operating_colnames = make_cashflow_colnames('operating')
 
@@ -65,6 +57,7 @@ for i, ticker in enumerate(tickers, 1):
 
 
     # random sleep ~0.5 second per ticker. ~120 tickers per min
+    # to avoid getting timed out
     time.sleep(random()/2)
 
 
@@ -148,7 +141,7 @@ for i, ticker in enumerate(tickers, 1):
 
 # convert to datafame & save
 info_df = pd.DataFrame(data=info_dict)
-spath = get_save_path(fname)
+spath = get_save_path(fname, OSX)
 info_df.to_csv(spath, index=False)
 
 
