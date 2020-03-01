@@ -15,8 +15,9 @@ OSX = False
 
 
 # User selected file to process
-fname = get_fname_from_sourcedata(osx=False)
+fname = get_fname_from_sourcedata(OSX)
 tickers = load_tickers(fname)
+
 
 # Create column headers
 investing_colnames = make_cashflow_colnames('investing')
@@ -53,7 +54,8 @@ for i, ticker in enumerate(tickers, 1):
           f'COMPANY: {company}{nl}'
           f'INDUSTRY: {industry}{nl}'
           f'FILING: {filing}{nl}'
-          f'FDATE: {fdate}')
+          f'FDATE: {fdate}{nl}'
+          f'EXCEL: {xl_url}')
 
 
     # random sleep ~0.5 second per ticker. ~120 tickers per min

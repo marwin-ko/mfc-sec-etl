@@ -1,0 +1,6 @@
+bs4
+ipdb
+lxml
+tempfile
+requests
+xlrd

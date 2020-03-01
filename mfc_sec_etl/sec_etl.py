@@ -112,5 +112,7 @@ def get_xl_file(url):
         tf.close()
         return xl_file, 'requests'
     except:
+        print('ERROR: Excel file did not load!')
+        print('Make sure you have the following packages installed: lxml, tempfile, requests, xlrd')
         tf.close()
     return None, 'failed'
