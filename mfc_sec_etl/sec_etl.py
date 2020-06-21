@@ -104,15 +104,8 @@ def get_xl_url(filing, soup):
 
 def get_xl_file(url):
     try:
-        tf = tempfile.NamedTemporaryFile(delete=True)
-        resp = requests.get(url)
-        with open(tf.name, 'wb') as f:
-            f.write(resp.content)
-        xl_file = pd.ExcelFile(tf.name)
-        tf.close()
-        return xl_file, 'requests'
+        xl_file = pd.ExcelFile(url)
+        return xl_file, 'success'
     except:
         print('ERROR: Excel file did not load!')
-        print('Make sure you have the following packages installed: lxml, tempfile, requests, xlrd')
-        tf.close()
-    return None, 'failed'
+    return None, 'fail'
